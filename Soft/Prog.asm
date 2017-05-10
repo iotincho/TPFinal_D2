@@ -1,5 +1,10 @@
 list p=16f877a
-
+;;; Configuración
+;;;  Oscilador:	cristal de cuarzo
+;;;  WatchDogTimer: apagado
+;;;  CodeProtection: desactivado
+;;;  PoWeR up Timer activado
+__CONFIG _XT_OSC & _WDT_OFF & _CP_OFF & _PWRTE_ON
 INCLUDE <P16F877A.INC>
 
 Time0 EQU 0X21 ;valores de tiempo 0-9/centesimas de segundo
@@ -19,18 +24,6 @@ D1 equ 0x01
 D2 equ 0x02
 D3 equ 0x03
 
-;;; Constantes de transmicion
-tx_port equ	PORTC	; Puerto de tranmisión
-tx_pin	equ	0x6		; Pin de transmisión
-rx_port equ	PORTC 		; Puerto de recepción
-rx_pin	equ	0x7		; Pin de recepción
-
-data_tx	equ	0x30		; Datos a enviar
-data_rx	equ	0x31	; Datos recibidos
-
-count_d equ	0x32	; Contador para el retardo
-count_p	equ	0x33	; Contador para el número de bits
-
 
 W_TMP EQU 0X40
 S_TMP EQU 0X41
@@ -42,7 +35,7 @@ ORG 04
 	GOTO INTERRUPT
 	
 ORG 06
-	INICIO: ; CONFIGURACOINES
+	INICIO ; CONFIGURACOINES
 		BSF STATUS,RP0;BANCO1
 		BCF STATUS,RP1
 		MOVLW 0x06 ; Configure all pins
@@ -52,6 +45,8 @@ ORG 06
 		CLRF TRISD
 		MOVLW 0X01
 		MOVWF TRISB
+		MOVLW 0X80
+		MOVWF TRISC
 		
 		BSF PIE1,TMR1IE; HABILITO INTERRUPCION POR TIMER1
 		
@@ -63,7 +58,32 @@ ORG 06
 		MOVLW 0x00; PRESCALER 1:1 , CON SYNC , CLOCK INTERNO, TMR1ON = 0
 		MOVWF T1CON;
 		
-	MAIN:;INICIALIZO LAS VARIABLES
+;;;;;;;;; CONFIGURO LOS PARAMETROS DE TRANSMICION;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+		BSF STATUS,RP0;BANCO1
+		BCF STATUS,RP1
+		
+		movlw D'25' ;9600 baud CRISTAL DE 4MHZ
+		movwf SPBRG
+		
+		bcf TXSTA,CSRC ;7(ignorado por estar en modo asincrono)
+		bcf TXSTA,TX9 ;6 transmicion de 8 bits
+		bsf TXSTA,TXEN;5 transmicion habilitada
+		bcf TXSTA,SYNC;4 modo asincrono
+					  ;bit 3 no implementado
+		bsf TXSTA,BRGH;2 high speed baudrate
+		
+		bsf PIE1,RCIE
+		BCF STATUS,RP0; BANCO 0
+		
+		bsf RCSTA,SPEN;7 serial port habilitado
+		bcf RCSTA,RX9;6 se reciben 8 bits
+		  			  ;bit 5 ignorado en modo asincrono
+		bsf RCSTA,CREN ;4 activa la recepcion continua
+		bsf RCSTA,ADDEN ;3 activo la interrupcion por recepcion
+		bcf RCSTA,FERR; 2 no framming error
+		bcf RCSTA,OERR;1 no overrun error
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;		
+	MAIN ;INICIALIZO LAS VARIABLES
 		CLRF Time0
 		CLRF Time1
 		CLRF Time2
@@ -90,8 +110,9 @@ ORG 06
 		BSF T1CON,TMR1ON
 		
 		BSF INTCON,GIE
-	A:	NOP
-		GOTO A
+		
+		NOP
+		GOTO $-1
 		
 			
 			
@@ -107,6 +128,8 @@ INTERRUPT ;SALVO LOS REGISTROS
 		GOTO INT_EXT
 		BTFSC PIR1,TMR1IF
 		GOTO INT_TMR
+		BTFSC PIR1,RCIF
+		GOTO INT_RC232
 		;SI FUE UN FALSO DISPARO RECUPERO LOS REG Y RETORNO 
 		MOVF S_TMP,W
 		MOVWF STATUS
@@ -116,16 +139,49 @@ INTERRUPT ;SALVO LOS REGISTROS
 		
 		
 		
-INT_EXT:
-
+INT_EXT
+		BCF PIR1,TXIF
+		MOVF Time4,W ; ENVIO LOS VALORES DE TIEMPO
+		IORLW 0X30 ; CODIFICO EN ASCII
+		MOVWF TXREG
+		BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+		GOTO $-1
+		
+		BCF PIR1,TXIF
+		MOVF Time3,W ; ENVIO LOS VALORES DE TIEMPO
+		IORLW 0X30 ; CODIFICO EN ASCII
+		MOVWF TXREG
+		BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+		GOTO $-1
+		
+	        BCF PIR1,TXIF
+		MOVF Time2,W ; ENVIO LOS VALORES DE TIEMPO
+		IORLW 0X30 ; CODIFICO EN ASCII
+		MOVWF TXREG
+		BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+		GOTO $-1
+		
+		BCF PIR1,TXIF
+		MOVF Time1,W ; ENVIO LOS VALORES DE TIEMPO
+		IORLW 0X30 ; CODIFICO EN ASCII
+		MOVWF TXREG
+		BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+		GOTO $-1
+		
+		MOVF Time0,W ; ENVIO LOS VALORES DE TIEMPO
+		IORLW 0X30 ; CODIFICO EN ASCII
+		MOVWF TXREG
+		
+		
 		BCF INTCON,INTF;BAJO LA BANDERA Y RECUPERACOIN DE REGISTROS
 		SWAPF S_TMP,W
 		MOVWF STATUS
 		SWAPF W_TMP,F
 		SWAPF W_TMP,W
 		RETFIE
+		
 
-INT_TMR: 
+INT_TMR 
 		BCF PIR1,TMR1IF;BAJO LA BANDERA  
 		
 		BCF T1CON,TMR1ON	; precarga de timer			
@@ -171,12 +227,12 @@ INT_TMR:
 		CLRF Time3
 		
 		; carga de datos de displays
-	SIG:	
+	SIG	
 		MOVF Time4,F ; si las centenas son cero no se muestran en los displays
 		BTFSS STATUS,Z
 		GOTO  MUESTRA_CENTENA
 		
-	NO_MUESTRA_CENTENA: ; carga los valores de los displays para luego imprimir
+	NO_MUESTRA_CENTENA ; carga los valores de los displays para luego imprimir
 		MOVF Time0,W
 		CALL TABLA
 		MOVWF Disp0
@@ -195,7 +251,7 @@ INT_TMR:
 		MOVWF Disp3
 		GOTO IMPR
 		
-	MUESTRA_CENTENA:
+	MUESTRA_CENTENA
 		MOVF Time1,W
 		CALL TABLA
 		MOVWF Disp0
@@ -214,35 +270,35 @@ INT_TMR:
 		MOVWF Disp3
 		GOTO IMPR
 		;IMPRESION CON MULTIPLEXADO EN LOS DISPLAYS
-	IMPR:	
+	IMPR	
 		CLRF PORTD ; 
 		BCF STATUS,C ; ASEGURO EL CARRY EN 0 PARA Q NO INTERFIERA EN LA ROTACION
 		RLF MULT_PORT,F ;ROTACION DE BITS PARA MULTIPLEXAR
-	DIS3:
+	DIS3
 		BTFSS MULT_PORT,3
 		GOTO DIS2
 		MOVF Disp3,W
 		MOVWF PORTD
 		GOTO RET ; PASO AL RETORNO DE INTERRUPCION
-	DIS2:	
+	DIS2	
 		BTFSS MULT_PORT,2
 		GOTO DIS1
 		MOVF Disp2,W
 		MOVWF PORTD
 		GOTO RET ; PASO AL RETORNO DE INTERRUPCION
-	DIS1:
+	DIS1
 		BTFSS MULT_PORT,1
 		GOTO DIS0
 		MOVF Disp1,W
 		MOVWF PORTD
 		GOTO RET ; PASO AL RETORNO DE INTERRUPCION
-	DIS0: ; SI LLEGO HASTA AQUI ES PORQUE TODOS ESTAN EN 0, OSEA , MULT_PORT = 0001 0000
+	DIS0 ; SI LLEGO HASTA AQUI ES PORQUE TODOS ESTAN EN 0, OSEA , MULT_PORT = 0001 0000
 		BSF PORTA,0
 		MOVF Disp0,W
 		MOVWF PORTD
 		
 		
-	RET:
+	RET
 		;RECUPERACOIN DE REGISTROS
 		SWAPF S_TMP,W
 		MOVWF STATUS
@@ -250,7 +306,8 @@ INT_TMR:
 		SWAPF W_TMP,W
 		RETFIE
 		
-TABLA:
+		
+TABLA
 		ADDWF PCL,F
 		RETLW 0x3F ;0
 		RETLW 0x06 ;1
@@ -262,6 +319,21 @@ TABLA:
 		RETLW 0x07 ;7
 		RETLW 0x7F ;8
 		RETLW 0x6F ;9
+	
+	
+INT_RC232
+		BCF PIR1,RCIF ; BAJO LA BANDERA
+		MOVF RCREG,W
+		MOVWF PORTB
+		MOVWF TXREG
+				 
+		MOVF S_TMP,W ; RECUPERO REGISTROS
+		MOVWF STATUS
+		SWAPF W_TMP,F
+		SWAPF W_TMP,W
+		RETFIE
+	
+	
 	
 END
 

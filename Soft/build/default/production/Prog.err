@@ -1,0 +1,33 @@
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 1 : Found directive in column 1. (list)
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 7 : Found directive in column 1. (__CONFIG)
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 8 : Found directive in column 1. (INCLUDE)
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 32 : Found directive in column 1. (ORG)
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 34 : Found directive in column 1. (ORG)
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 37 : Found directive in column 1. (ORG)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 38 : Found label after column 1. (INICIO)
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 42 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 44 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 45 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 47 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 49 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 51 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 66 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 68 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 69 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 70 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 71 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 73 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 75 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 86 : Found label after column 1. (MAIN)
+Message[305] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 189 : Using default destination of 1 (file).
+Message[305] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 191 : Using default destination of 1 (file).
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 230 : Found label after column 1. (SIG)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 235 : Found label after column 1. (NO_MUESTRA_CENTENA)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 254 : Found label after column 1. (MUESTRA_CENTENA)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 273 : Found label after column 1. (IMPR)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 277 : Found label after column 1. (DIS3)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 283 : Found label after column 1. (DIS2)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 289 : Found label after column 1. (DIS1)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 295 : Found label after column 1. (DIS0)
+Warning[207] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 301 : Found label after column 1. (RET)
+Warning[205] C:\USERS\TINCHO\GOOGLE DRIVE\DIGITAL 2\PROY\SOFT\PROG.ASM 338 : Found directive in column 1. (END)
