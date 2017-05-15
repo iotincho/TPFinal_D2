@@ -1,0 +1,9 @@
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\obj\x86\Debug\WindowsApplication1.Form1.resources
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\obj\x86\Debug\SoftPC.vbproj.GenerateResource.Cache
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\bin\Debug\SoftPC.exe
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\bin\Debug\SoftPC.pdb
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\bin\Debug\SoftPC.xml
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\obj\x86\Debug\SoftPC.exe
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\obj\x86\Debug\SoftPC.xml
+C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\SoftPC\SoftPC\SoftPC\obj\x86\Debug\SoftPC.pdb
