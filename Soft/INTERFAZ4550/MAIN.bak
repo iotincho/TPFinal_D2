@@ -2,8 +2,8 @@
 #include <18f4550.h>
 #Fuses HSPLL, NOWDT, NOPROTECT, NOLVP, NODEBUG, USBDIV, PLL6, CPUDIV1, VREGEN
 #use delay(clock=24000000)
-#use rs232(baud=9600, xmit=PIN_C6, rcv=PIN_C7, PARITY =N, bits = 8)
-#include <C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\INTERFAZ4550\usb_cdc.h>
+#use rs232(BAUD=9600, XMIT=PIN_C6, RCV=PIN_C7, PARITY =N, BITS = 8,STOP = 1,UART1)
+#include <usb_cdc2.h>
            
 #endif
 
@@ -12,14 +12,21 @@ char Recibido_USB;
 
 #INT_RDA
 void PP_Reciver(){
-   if (kbhit()){
+  do{
       recibido_RS232 = getch();
       usb_cdc_putc(recibido_RS232);
-      }
+  }while(kbhit());
+}
+
+#INT_TIMER0
+void refreshUSB(){
+usb_task();
 }
 
 
 void main(){
+setup_timer_0(RTCC_INTERNAL|RTCC_DIV_128|RTCC_8_BIT);
+enable_interrupts(INT_TIMER0);
 enable_interrupts(INT_USB);
 enable_interrupts(INT_RDA);
 enable_interrupts(GLOBAL);
@@ -35,7 +42,7 @@ while(true){
       }
 
 
-usb_task();
+
 
 
 }

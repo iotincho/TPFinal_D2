@@ -1,7 +1,7 @@
-D G "__PCH__" 0 47 ""4.104""
-D G "__DEVICE__" 0 47 "4550"
-D G "__DATE__" 0 47 ""23-may-17""
-D G "__TIME__" 0 47 ""01:01:22"" "Standard Header file for the PIC18F4550 device ////////////////"
+D G "__PCH__" 0 54 ""4.104""
+D G "__DEVICE__" 0 54 "4550"
+D G "__DATE__" 0 54 ""24-may-17""
+D G "__TIME__" 0 54 ""00:16:03"" "Standard Header file for the PIC18F4550 device ////////////////"
 d G "PIN_A0" 1 28 "31744"
 d G "PIN_A1" 1 29 "31745"
 d G "PIN_A2" 1 30 "31746"
@@ -1131,7 +1131,8 @@ C L "get_string_usb" 2 488 1 "FUNCTION"
 V G "recibido_RS232" 0 10 "int8"
 V G "Recibido_USB" 0 11 "int8"
 F G "PP_Reciver" 0 14 "void()"
-F G "MAIN" 0 22 "void()"
+F G "refreshUSB" 0 22 "void()"
+F G "MAIN" 0 27 "void()"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

@@ -1,4 +1,4 @@
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  1
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -38,455 +38,469 @@ Warning[205]: Found directive in column 1. (INCLUDE)
   00000029            00019 Disp2 EQU 0x29
   0000002A            00020 Disp3 EQU 0x2A
   00000005            00021 MULT_PORT equ PORTA ;puerto de multiplexado
-  00000000            00022 D0 equ 0x00
-  00000001            00023 D1 equ 0x01
-  00000002            00024 D2 equ 0x02
-  00000003            00025 D3 equ 0x03
-                      00026 
-                      00027 
-  00000030            00028 W_TMP EQU 0X30
-  00000031            00029 S_TMP EQU 0X31
-  00000032            00030 cont_flag equ 0x32 ; es una bandera que ademas cuenta el tiempo de retencion de muestra del intervalo re
+  0000002B            00022 Disp_Aux equ 0x2B
+                      00023 
+                      00024 
+  00000030            00025 W_TMP EQU 0X30
+  00000031            00026 S_TMP EQU 0X31
+  00000032            00027 cont_flag equ 0x32 ; es una bandera que ademas cuenta el tiempo de retencion de muestra del intervalo re
                             cibido desde la pc
-                      00031 
-                      00032 
+                      00028 
+                      00029 
 Warning[205]: Found directive in column 1. (ORG)
-                      00033 ORG 00
-0000   2???           00034         GOTO INICIO
+                      00030 ORG 00
+0000   2???           00031         GOTO INICIO
 Warning[205]: Found directive in column 1. (ORG)
-                      00035 ORG 04
-0004   2???           00036         GOTO INTERRUPT
-                      00037         
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  2
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
+                      00032 ORG 04
+0004   2???           00033         GOTO INTERRUPT
+                      00034         
 Warning[205]: Found directive in column 1. (ORG)
-                      00038 ORG 06
+                      00035 ORG 06
 Warning[207]: Found label after column 1. (INICIO)
-0006                  00039         INICIO ; CONFIGURACOINES
-0006   1683           00040                 BSF STATUS,RP0;BANCO1
-0007   1303           00041                 BCF STATUS,RP1
-0008   3006           00042                 MOVLW 0x06 ; Configure all pins
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0006                  00036         INICIO ; CONFIGURACOINES
+0006   1683           00037                 BSF STATUS,RP0;BANCO1
+0007   1303           00038                 BCF STATUS,RP1
+0008   3006           00039                 MOVLW 0x06 ; Configure all pins
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0009   009F           00043                 MOVWF ADCON1
-                      00044                 
+0009   009F           00040                 MOVWF ADCON1
+                      00041                 
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000A   0185           00045                 CLRF TRISA ; CONFIGURACION DE PUERTOS
+000A   0185           00042                 CLRF TRISA ; CONFIGURACION DE PUERTOS
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000B   0188           00046                 CLRF TRISD
-000C   3001           00047                 MOVLW 0X01
+000B   0188           00043                 CLRF TRISD
+000C   3001           00044                 MOVLW 0X01
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000D   0086           00048                 MOVWF TRISB
-000E   3080           00049                 MOVLW 0X80
+000D   0086           00045                 MOVWF TRISB
+000E   3080           00046                 MOVLW 0X80
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000F   0087           00050                 MOVWF TRISC
-                      00051                 
+000F   0087           00047                 MOVWF TRISC
+                      00048                 
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0010   140C           00052                 BSF PIE1,TMR1IE; HABILITO INTERRUPCION POR TIMER1
-                      00053                 
-0011   1283           00054                 BCF STATUS,RP0; BANCO 0
-                      00055                 
-0012   170B           00056                 BSF INTCON,PEIE ; HABILITO LAS INTERRUPCIONES POR PERIFERICOS
-                      00057                 
-0013   160B           00058                 BSF INTCON,INTE
-0014   3000           00059                 MOVLW 0x00; PRESCALER 1:1 , CON SYNC , CLOCK INTERNO, TMR1ON = 0
-0015   0090           00060                 MOVWF T1CON;
-                      00061                 
-                      00062 ;;;;;;;;; CONFIGURO LOS PARAMETROS DE TRANSMICION;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0016   1683           00063                 BSF STATUS,RP0;BANCO1
-0017   1303           00064                 BCF STATUS,RP1
+0010   140C           00049                 BSF PIE1,TMR1IE; HABILITO INTERRUPCION POR TIMER1
+                      00050                 
+0011   1283           00051                 BCF STATUS,RP0; BANCO 0
+                      00052                 
+0012   170B           00053                 BSF INTCON,PEIE ; HABILITO LAS INTERRUPCIONES POR PERIFERICOS
+                      00054                 
+0013   160B           00055                 BSF INTCON,INTE
+0014   3000           00056                 MOVLW 0x00; PRESCALER 1:1 , CON SYNC , CLOCK INTERNO, TMR1ON = 0
+0015   0090           00057                 MOVWF T1CON;
+                      00058                 
+                      00059 ;;;;;;;;; CONFIGURO LOS PARAMETROS DE TRANSMICION;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0016   1683           00060                 BSF STATUS,RP0;BANCO1
+0017   1303           00061                 BCF STATUS,RP1
+                      00062                 
+0018   3019           00063                 movlw D'25' ;9600 baud CRISTAL DE 4MHZ
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0019   0099           00064                 movwf SPBRG
                       00065                 
-0018   3019           00066                 movlw D'25' ;9600 baud CRISTAL DE 4MHZ
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0019   0099           00067                 movwf SPBRG
-                      00068                 
+001A   1398           00066                 bcf TXSTA,CSRC ;7(ignorado por estar en modo asincrono)
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001A   1398           00069                 bcf TXSTA,CSRC ;7(ignorado por estar en modo asincrono)
+001B   1318           00067                 bcf TXSTA,TX9 ;6 transmicion de 8 bits
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001B   1318           00070                 bcf TXSTA,TX9 ;6 transmicion de 8 bits
+001C   1698           00068                 bsf TXSTA,TXEN;5 transmicion habilitada
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001C   1698           00071                 bsf TXSTA,TXEN;5 transmicion habilitada
+001D   1218           00069                 bcf TXSTA,SYNC;4 modo asincrono
+                      00070                                           ;bit 3 no implementado
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001D   1218           00072                 bcf TXSTA,SYNC;4 modo asincrono
-                      00073                                           ;bit 3 no implementado
+001E   1518           00071                 bsf TXSTA,BRGH;2 high speed baudrate
+                      00072                 
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001E   1518           00074                 bsf TXSTA,BRGH;2 high speed baudrate
+001F   168C           00073                 bsf PIE1,RCIE
+0020   1283           00074                 BCF STATUS,RP0; BANCO 0
                       00075                 
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  3
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-001F   168C           00076                 bsf PIE1,RCIE
-0020   1283           00077                 BCF STATUS,RP0; BANCO 0
-                      00078                 
-0021   1798           00079                 bsf RCSTA,SPEN;7 serial port habilitado
-0022   1318           00080                 bcf RCSTA,RX9;6 se reciben 8 bits
-                      00081                                           ;bit 5 ignorado en modo asincrono
-0023   1618           00082                 bsf RCSTA,CREN ;4 activa la recepcion continua
-0024   1598           00083                 bsf RCSTA,ADDEN ;3 activo la interrupcion por recepcion
-0025   1118           00084                 bcf RCSTA,FERR; 2 no framming error
-0026   1098           00085                 bcf RCSTA,OERR;1 no overrun error
-                      00086 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          
+0021   1798           00076                 bsf RCSTA,SPEN;7 serial port habilitado
+0022   1318           00077                 bcf RCSTA,RX9;6 se reciben 8 bits
+                      00078                                           ;bit 5 ignorado en modo asincrono
+0023   1618           00079                 bsf RCSTA,CREN ;4 activa la recepcion continua
+0024   1598           00080                 bsf RCSTA,ADDEN ;3 activo la interrupcion por recepcion
+0025   1118           00081                 bcf RCSTA,FERR; 2 no framming error
+0026   1098           00082                 bcf RCSTA,OERR;1 no overrun error
+                      00083 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          
 Warning[207]: Found label after column 1. (MAIN)
-0027                  00087         MAIN ;INICIALIZO LAS VARIABLES
-0027   01A1           00088                 CLRF Time0
-0028   01A2           00089                 CLRF Time1
-0029   01A3           00090                 CLRF Time2
-002A   01A4           00091                 CLRF Time3
-002B   01A5           00092                 CLRF Time4
-002C   01A6           00093                 CLRF TimeAux
-002D   01B2           00094                 CLRF cont_flag
-                      00095                 
-002E   3001           00096                 MOVLW 0X01
-002F   0085           00097                 MOVWF MULT_PORT
-0030   0188           00098                 CLRF PORTD
-                      00099                 
-0031   0103           00100                 CLRW
-0032   2???           00101                 CALL TABLA
-0033   00A7           00102                 MOVWF Disp0
-0034   00A8           00103                 MOVWF Disp1
-0035   00A9           00104                 MOVWF Disp2
-0036   00AA           00105                 MOVWF Disp3
-                      00106                 
-                      00107                                                 ;El timer 1 debe interrumpir cada 5ms, PRECARGA= EC77
-0037   1010           00108                 BCF T1CON,TMR1ON                                
-0038   30EC           00109                 MOVLW 0XEC
-0039   008F           00110                 MOVWF TMR1H
-003A   3077           00111                 MOVLW 0X77
-003B   008E           00112                 MOVWF TMR1L
-                      00113                 
-                      00114                 
-003C   1806           00115                 btfsc PORTB,0
-003D   2???           00116                 goto $-1
-                      00117                 
-003E   1410           00118                 BSF T1CON,TMR1ON                
-003F   178B           00119                 BSF INTCON,GIE
-                      00120                 
-0040   0000           00121                 NOP
-0041   2???           00122                 GOTO $-1
-                      00123                 
-                      00124                         
-                      00125                         
-0042                  00126 INTERRUPT ;SALVO LOS REGISTROS
-0042   00B0           00127                 MOVWF W_TMP
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  4
+0027                  00084         MAIN ;INICIALIZO LAS VARIABLES
+0027   01A1           00085                 CLRF Time0
+0028   01A2           00086                 CLRF Time1
+0029   01A3           00087                 CLRF Time2
+002A   01A4           00088                 CLRF Time3
+002B   01A5           00089                 CLRF Time4
+002C   01A6           00090                 CLRF TimeAux
+002D   01B2           00091                 CLRF cont_flag
+002E   01AB           00092                 CLRF Disp_Aux
+                      00093                 
+002F   30FF           00094                 MOVLW 0XFF
+0030   0085           00095                 MOVWF MULT_PORT
+0031   0088           00096                 MOVWF PORTD
+                      00097                 
+0032   0103           00098                 CLRW
+0033   2???           00099                 CALL TABLA
+0034   00A7           00100                 MOVWF Disp0
+0035   00A8           00101                 MOVWF Disp1
+0036   00A9           00102                 MOVWF Disp2
+0037   00AA           00103                 MOVWF Disp3
+                      00104                 
+                      00105                                                 ;El timer 1 debe interrumpir cada 5ms, PRECARGA= EC77
+0038   1010           00106                 BCF T1CON,TMR1ON                                
+0039   30EC           00107                 MOVLW 0XEC
+003A   008F           00108                 MOVWF TMR1H
+003B   3077           00109                 MOVLW 0X77
+003C   008E           00110                 MOVWF TMR1L
+                      00111                 
+                      00112                 
+                      00113                 ;btfsc PORTB,0
+                      00114                 ;goto $-1
+                      00115                 
+003D   1410           00116                 BSF T1CON,TMR1ON                
+003E   178B           00117                 BSF INTCON,GIE
+                      00118                 
+003F   0000           00119                 NOP
+0040   2???           00120                 GOTO $-1
+                      00121                 
+                      00122                         
+                      00123                         
+0041                  00124 INTERRUPT ;SALVO LOS REGISTROS
+0041   00B0           00125                 MOVWF W_TMP
+0042   0E03           00126                 SWAPF STATUS,W
+0043   1283           00127                 BCF STATUS,RP0
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0043   0E03           00128                 SWAPF STATUS,W
-0044   1283           00129                 BCF STATUS,RP0
-0045   1303           00130                 BCF STATUS,RP1
-0046   00B1           00131                 MOVWF S_TMP
-                      00132                 
-                      00133                 ;VERIFICO LOS FLAGS
-0047   188B           00134                 BTFSC INTCON,INTF
-0048   2???           00135                 GOTO INT_EXT
-0049   180C           00136                 BTFSC PIR1,TMR1IF
-004A   2???           00137                 GOTO INT_TMR
-004B   1A8C           00138                 BTFSC PIR1,RCIF
-004C   2???           00139                 GOTO INT_RC232
-                      00140                 ;SI FUE UN FALSO DISPARO RECUPERO LOS REG Y RETORNO 
-004D   0831           00141                 MOVF S_TMP,W
-004E   0083           00142                 MOVWF STATUS
-004F   0EB0           00143                 SWAPF W_TMP,F
-0050   0E30           00144                 SWAPF W_TMP,W
-0051   0009           00145                 RETFIE
+0044   1303           00128                 BCF STATUS,RP1
+0045   00B1           00129                 MOVWF S_TMP
+                      00130                 
+                      00131                 ;VERIFICO LOS FLAGS
+0046   188B           00132                 BTFSC INTCON,INTF
+0047   2???           00133                 GOTO INT_EXT
+0048   180C           00134                 BTFSC PIR1,TMR1IF
+0049   2???           00135                 GOTO INT_TMR
+004A   1A8C           00136                 BTFSC PIR1,RCIF
+004B   2???           00137                 GOTO INT_RC232
+                      00138                 ;SI FUE UN FALSO DISPARO RECUPERO LOS REG Y RETORNO 
+004C   0831           00139                 MOVF S_TMP,W
+004D   0083           00140                 MOVWF STATUS
+004E   0EB0           00141                 SWAPF W_TMP,F
+004F   0E30           00142                 SWAPF W_TMP,W
+0050   0009           00143                 RETFIE
+                      00144                 
+                      00145                 
                       00146                 
-                      00147                 
-                      00148                 
-0052                  00149 INT_EXT
-0052   120C           00150                 BCF PIR1,TXIF
-0053   0825           00151                 MOVF Time4,W ; ENVIO LOS VALORES DE TIEMPO
-                      00152                 ;IORLW 0X30 ; CODIFICO EN ASCII
-0054   0099           00153                 MOVWF TXREG
-0055   1E0C           00154                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
-0056   2???           00155                 GOTO $-1
-                      00156                 
-0057   120C           00157                 BCF PIR1,TXIF
-0058   0824           00158                 MOVF Time3,W ; ENVIO LOS VALORES DE TIEMPO
-                      00159                 ;IORLW 0X30 ; CODIFICO EN ASCII
-0059   0099           00160                 MOVWF TXREG
-005A   1E0C           00161                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
-005B   2???           00162                 GOTO $-1
-                      00163                 
-005C   120C           00164                 BCF PIR1,TXIF
-005D   0823           00165                 MOVF Time2,W ; ENVIO LOS VALORES DE TIEMPO
-                      00166                 ;IORLW 0X30 ; CODIFICO EN ASCII
-005E   0099           00167                 MOVWF TXREG
-005F   1E0C           00168                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
-0060   2???           00169                 GOTO $-1
-                      00170                 
-0061   120C           00171                 BCF PIR1,TXIF
-0062   0822           00172                 MOVF Time1,W ; ENVIO LOS VALORES DE TIEMPO
-                      00173                 ;IORLW 0X30 ; CODIFICO EN ASCII
-0063   0099           00174                 MOVWF TXREG
-0064   1E0C           00175                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
-0065   2???           00176                 GOTO $-1
-                      00177                 
-0066   0821           00178                 MOVF Time0,W ; ENVIO LOS VALORES DE TIEMPO
-                      00179                 ;IORLW 0X30 ; CODIFICO EN ASCII
-0067   0099           00180                 MOVWF TXREG
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  5
+0051                  00147 INT_EXT
+0051   120C           00148                 BCF PIR1,TXIF
+0052   0825           00149                 MOVF Time4,W ; ENVIO LOS VALORES DE TIEMPO
+                      00150                 ;IORLW 0X30 ; CODIFICO EN ASCII
+0053   0099           00151                 MOVWF TXREG
+0054   1E0C           00152                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+0055   2???           00153                 GOTO $-1
+                      00154                 
+0056   120C           00155                 BCF PIR1,TXIF
+0057   0824           00156                 MOVF Time3,W ; ENVIO LOS VALORES DE TIEMPO
+                      00157                 ;IORLW 0X30 ; CODIFICO EN ASCII
+0058   0099           00158                 MOVWF TXREG
+0059   1E0C           00159                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+005A   2???           00160                 GOTO $-1
+                      00161                 
+005B   120C           00162                 BCF PIR1,TXIF
+005C   0823           00163                 MOVF Time2,W ; ENVIO LOS VALORES DE TIEMPO
+                      00164                 ;IORLW 0X30 ; CODIFICO EN ASCII
+005D   0099           00165                 MOVWF TXREG
+005E   1E0C           00166                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+005F   2???           00167                 GOTO $-1
+                      00168                 
+0060   120C           00169                 BCF PIR1,TXIF
+0061   0822           00170                 MOVF Time1,W ; ENVIO LOS VALORES DE TIEMPO
+                      00171                 ;IORLW 0X30 ; CODIFICO EN ASCII
+0062   0099           00172                 MOVWF TXREG
+0063   1E0C           00173                 BTFSS PIR1,TXIF ; SI EL BUFFER DE ENVIO ESTA VACIO ENVIO EL PROXIMO
+0064   2???           00174                 GOTO $-1
+                      00175                 
+0065   0821           00176                 MOVF Time0,W ; ENVIO LOS VALORES DE TIEMPO
+                      00177                 ;IORLW 0X30 ; CODIFICO EN ASCII
+0066   0099           00178                 MOVWF TXREG
+                      00179                 
+                      00180                 
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00181                 
-                      00182                 
-0068   108B           00183                 BCF INTCON,INTF;BAJO LA BANDERA Y RECUPERACOIN DE REGISTROS
-0069   0E31           00184                 SWAPF S_TMP,W
-006A   0083           00185                 MOVWF STATUS
-006B   0EB0           00186                 SWAPF W_TMP,F
-006C   0E30           00187                 SWAPF W_TMP,W
-006D   0009           00188                 RETFIE
-                      00189                 
-                      00190 
-006E                  00191 INT_TMR 
-006E   100C           00192                 BCF PIR1,TMR1IF;BAJO LA BANDERA  
-                      00193                 
-006F   1010           00194                 BCF T1CON,TMR1ON        ; precarga de timer                     
-0070   30EC           00195                 MOVLW 0XEC
+0067   108B           00181                 BCF INTCON,INTF;BAJO LA BANDERA Y RECUPERACOIN DE REGISTROS
+0068   0E31           00182                 SWAPF S_TMP,W
+0069   0083           00183                 MOVWF STATUS
+006A   0EB0           00184                 SWAPF W_TMP,F
+006B   0E30           00185                 SWAPF W_TMP,W
+006C   0009           00186                 RETFIE
+                      00187                 
+                      00188 
+006D                  00189 INT_TMR 
+006D   100C           00190                 BCF PIR1,TMR1IF;BAJO LA BANDERA  
+                      00191                 
+006E   1010           00192                 BCF T1CON,TMR1ON        ; precarga de timer                     
+006F   30EC           00193                 MOVLW 0XEC
 Message[305]: Using default destination of 1 (file).
-0071   078F           00196                 ADDWF TMR1H ; uso add para mas precicion
-0072   3077           00197                 MOVLW 0X77
+0070   078F           00194                 ADDWF TMR1H ; uso add para mas precicion
+0071   3077           00195                 MOVLW 0X77
 Message[305]: Using default destination of 1 (file).
-0073   078E           00198                 ADDWF TMR1L
-0074   1410           00199                 BSF T1CON,TMR1ON
-                      00200                 
-0075   0AA6           00201                 INCF  TimeAux,F ;incremento la cuenta de tiempo
-0076   0826           00202                 MOVF  TimeAux,W
-0077   3A02           00203                 XORLW 0x02
-0078   1D03           00204                 BTFSS STATUS,Z
-0079   2???           00205                 GOTO SIG                ; SI NO ES NECESARIO ACTUALIZAR LOS OTROS CONTADORES PASA DIRECG
+0072   078E           00196                 ADDWF TMR1L
+0073   1410           00197                 BSF T1CON,TMR1ON
+                      00198                 
+0074   0AA6           00199                 INCF  TimeAux,F ;incremento la cuenta de tiempo
+0075   0826           00200                 MOVF  TimeAux,W
+0076   3A02           00201                 XORLW 0x02
+0077   1D03           00202                 BTFSS STATUS,Z
+0078   2???           00203                 GOTO SIG                ; SI NO ES NECESARIO ACTUALIZAR LOS OTROS CONTADORES PASA DIRECG
                             TO AL SIGUIENTE PASO
-007A   01A6           00206                 CLRF TimeAux            
-                      00207                 
-007B   0AA1           00208                 INCF  Time0,F ; si el aux es 2 incremento las centesimas de segundo
-007C   0821           00209                 MOVF  Time0,W
-007D   3A0A           00210                 XORLW 0x0A
-007E   1D03           00211                 BTFSS STATUS,Z
-007F   2???           00212                 GOTO SIG
-0080   01A1           00213                 CLRF Time0
-                      00214                 
-0081   0AA2           00215                 INCF  Time1,F ; si es necesario incremento las decimas de segundo
-0082   0822           00216                 MOVF  Time1,W
-0083   3A0A           00217                 XORLW 0x0A
-0084   1D03           00218                 BTFSS STATUS,Z
-0085   2???           00219                 GOTO SIG
-0086   01A2           00220                 CLRF Time1
-                      00221                 
-0087   0AA3           00222                 INCF  Time2,F; si es necesario incremento los segundos
-0088   0823           00223                 MOVF  Time2,W
-0089   3A0A           00224                 XORLW 0x0A
-008A   1D03           00225                 BTFSS STATUS,Z
-008B   2???           00226                 GOTO SIG
-008C   01A3           00227                 CLRF Time2
-                      00228                 
-008D   0AA4           00229                 INCF  Time3,F; si es necesario incremento las decenas de segundo
-008E   0824           00230                 MOVF  Time3,W
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  6
+0079   01A6           00204                 CLRF TimeAux            
+                      00205                 
+007A   0AA1           00206                 INCF  Time0,F ; si el aux es 2 incremento las centesimas de segundo
+007B   0821           00207                 MOVF  Time0,W
+007C   3A0A           00208                 XORLW 0x0A
+007D   1D03           00209                 BTFSS STATUS,Z
+007E   2???           00210                 GOTO SIG
+007F   01A1           00211                 CLRF Time0
+                      00212                 
+0080   0AA2           00213                 INCF  Time1,F ; si es necesario incremento las decimas de segundo
+0081   0822           00214                 MOVF  Time1,W
+0082   3A0A           00215                 XORLW 0x0A
+0083   1D03           00216                 BTFSS STATUS,Z
+0084   2???           00217                 GOTO SIG
+0085   01A2           00218                 CLRF Time1
+                      00219                 
+0086   0AA3           00220                 INCF  Time2,F; si es necesario incremento los segundos
+0087   0823           00221                 MOVF  Time2,W
+0088   3A0A           00222                 XORLW 0x0A
+0089   1D03           00223                 BTFSS STATUS,Z
+008A   2???           00224                 GOTO SIG
+008B   01A3           00225                 CLRF Time2
+                      00226                 
+008C   0AA4           00227                 INCF  Time3,F; si es necesario incremento las decenas de segundo
+008D   0824           00228                 MOVF  Time3,W
+008E   3A0A           00229                 XORLW 0x0A
+008F   1D03           00230                 BTFSS STATUS,Z
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-008F   3A0A           00231                 XORLW 0x0A
-0090   1D03           00232                 BTFSS STATUS,Z
-0091   2???           00233                 GOTO SIG
-0092   01A4           00234                 CLRF Time3
-                      00235                 
-                      00236                 ; carga de datos de displays
+0090   2???           00231                 GOTO SIG
+0091   01A4           00232                 CLRF Time3
+                      00233                 
+                      00234                 ; carga de datos de displays
 Warning[207]: Found label after column 1. (SIG)
-0093                  00237         SIG     
-0093   08B2           00238                 MOVF cont_flag,f ; SI LOS VALORES DE LOS DISPLAYS ESTAN BAJO RETENCION PARA MOSTRAR EL I
+0092                  00235         SIG     
+0092   08B2           00236                 MOVF cont_flag,f ; SI LOS VALORES DE LOS DISPLAYS ESTAN BAJO RETENCION PARA MOSTRAR EL I
                             NTERVALO NO SE DEBEN ACTUALIZAR
-0094   1903           00239                 BTFSC STATUS,Z ; CUNADO EL FLAG ESTA EN CERO NO HAY RETENCION. TAMBIEN HACE LA CUENTA DE
+0093   1903           00237                 BTFSC STATUS,Z ; CUNADO EL FLAG ESTA EN CERO NO HAY RETENCION. TAMBIEN HACE LA CUENTA DE
                              LA RETENCION
-0095   2???           00240                 GOTO  ACTUALIZAR
+0094   2???           00238                 GOTO  ACTUALIZAR
 Message[305]: Using default destination of 1 (file).
-0096   0AB2           00241                 INCF  cont_flag ; incremente el contador de tiempo de retencion
-0097   2???           00242                 goto  IMPR
+0095   0AB2           00239                 INCF  cont_flag ; incremente el contador de tiempo de retencion
+0096   2???           00240                 goto  IMPR
 Warning[207]: Found label after column 1. (ACTUALIZAR)
-0098                  00243         ACTUALIZAR      
-0098   08A5           00244                 MOVF Time4,F ; si las centenas son cero no se muestran en los displays
-0099   1D03           00245                 BTFSS STATUS,Z
-009A   2???           00246                 GOTO  MUESTRA_CENTENA
-                      00247                 
+0097                  00241         ACTUALIZAR      
+0097   08A5           00242                 MOVF Time4,F ; si las centenas son cero no se muestran en los displays
+0098   1D03           00243                 BTFSS STATUS,Z
+0099   2???           00244                 GOTO  MUESTRA_CENTENA
+                      00245                 
 Warning[207]: Found label after column 1. (NO_MUESTRA_CENTENA)
-009B                  00248         NO_MUESTRA_CENTENA ; carga los valores de los displays para luego imprimir
-009B   0821           00249                 MOVF Time0,W
-009C   2???           00250                 CALL TABLA
-009D   00A7           00251                 MOVWF Disp0
-                      00252                 
-009E   0822           00253                 MOVF Time1,W
-009F   2???           00254                 CALL TABLA
-00A0   00A8           00255                 MOVWF Disp1
-                      00256                 
-00A1   0823           00257                 MOVF Time2,W
-00A2   2???           00258                 CALL TABLA
-00A3   00A9           00259                 MOVWF Disp2
-00A4   17A9           00260                 BSF Disp2 , 7 ; agrego el punto decimal luego de los segundos
-                      00261                 
-00A5   0824           00262                 MOVF Time3,W
-00A6   2???           00263                 CALL TABLA
-00A7   00AA           00264                 MOVWF Disp3
-00A8   2???           00265                 GOTO IMPR
-                      00266                 
+009A                  00246         NO_MUESTRA_CENTENA ; carga los valores de los displays para luego imprimir
+009A   0821           00247                 MOVF Time0,W
+009B   2???           00248                 CALL TABLA
+009C   00A7           00249                 MOVWF Disp0
+                      00250                 
+009D   0822           00251                 MOVF Time1,W
+009E   2???           00252                 CALL TABLA
+009F   00A8           00253                 MOVWF Disp1
+                      00254                 
+00A0   0823           00255                 MOVF Time2,W
+00A1   2???           00256                 CALL TABLA
+00A2   00A9           00257                 MOVWF Disp2
+00A3   17A9           00258                 BSF Disp2 , 7 ; agrego el punto decimal luego de los segundos
+                      00259                 
+00A4   0824           00260                 MOVF Time3,W
+00A5   2???           00261                 CALL TABLA
+00A6   00AA           00262                 MOVWF Disp3
+00A7   2???           00263                 GOTO IMPR
+                      00264                 
 Warning[207]: Found label after column 1. (MUESTRA_CENTENA)
-00A9                  00267         MUESTRA_CENTENA
-00A9   0822           00268                 MOVF Time1,W
-00AA   2???           00269                 CALL TABLA
-00AB   00A7           00270                 MOVWF Disp0
-                      00271                 
-00AC   0823           00272                 MOVF Time2,W
-00AD   2???           00273                 CALL TABLA
-00AE   00A8           00274                 MOVWF Disp1
-00AF   17A8           00275                 BSF Disp1 , 7 ; agrego el punto decimal luego de los segundos
-                      00276                 
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  7
+00A8                  00265         MUESTRA_CENTENA
+00A8   0822           00266                 MOVF Time1,W
+00A9   2???           00267                 CALL TABLA
+00AA   00A7           00268                 MOVWF Disp0
+                      00269                 
+00AB   0823           00270                 MOVF Time2,W
+00AC   2???           00271                 CALL TABLA
+00AD   00A8           00272                 MOVWF Disp1
+00AE   17A8           00273                 BSF Disp1 , 7 ; agrego el punto decimal luego de los segundos
+                      00274                 
+00AF   0824           00275                 MOVF Time3,W
+00B0   2???           00276                 CALL TABLA
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00B0   0824           00277                 MOVF Time3,W
-00B1   2???           00278                 CALL TABLA
-00B2   00A9           00279                 MOVWF Disp2
-                      00280                 
-00B3   0825           00281                 MOVF Time4,W
-00B4   2???           00282                 CALL TABLA
-00B5   00AA           00283                 MOVWF Disp3
-00B6   2???           00284                 GOTO IMPR
-                      00285                 ;IMPRESION CON MULTIPLEXADO EN LOS DISPLAYS
+00B1   00A9           00277                 MOVWF Disp2
+                      00278                 
+00B2   0825           00279                 MOVF Time4,W
+00B3   2???           00280                 CALL TABLA
+00B4   00AA           00281                 MOVWF Disp3
+00B5   2???           00282                 GOTO IMPR
+                      00283                 ;IMPRESION CON MULTIPLEXADO EN LOS DISPLAYS
+                      00284                 
+                      00285                 
+                      00286                 
 Warning[207]: Found label after column 1. (IMPR)
-00B7                  00286         IMPR    
-00B7   0188           00287                 CLRF PORTD ; 
-00B8   1003           00288                 BCF STATUS,C ; ASEGURO EL CARRY EN 0 PARA Q NO INTERFIERA EN LA ROTACION
-00B9   0D85           00289                 RLF MULT_PORT,F ;ROTACION DE BITS PARA MULTIPLEXAR
+00B6                  00287         IMPR    
+00B6   30FF           00288                 MOVLW 0XFF
+00B7   0088           00289                 MOVWF PORTD ; 
+00B8   082B           00290                 MOVF Disp_Aux,W
+00B9   0782           00291                 ADDWF PCL,F
+00BA   2???           00292                 GOTO DIS3
+00BB   2???           00293                 GOTO DIS2
+00BC   2???           00294                 GOTO DIS1
+00BD   2???           00295                 GOTO DIS0
+                      00296                 
 Warning[207]: Found label after column 1. (DIS3)
-00BA                  00290         DIS3
-00BA   1D85           00291                 BTFSS MULT_PORT,3
-00BB   2???           00292                 GOTO DIS2
-00BC   082A           00293                 MOVF Disp3,W
-00BD   0088           00294                 MOVWF PORTD
-00BE   2???           00295                 GOTO RET ; PASO AL RETORNO DE INTERRUPCION
+00BE                  00297         DIS3
+00BE   30F7           00298                 MOVLW B'11110111'
+00BF   0085           00299                 MOVWF MULT_PORT
+00C0   082A           00300                 MOVF Disp3,W
+00C1   0088           00301                 MOVWF PORTD
+00C2   0AAB           00302                 INCF Disp_Aux,F
+00C3   2???           00303                 GOTO RET ; PASO AL RETORNO DE INTERRUPCION
 Warning[207]: Found label after column 1. (DIS2)
-00BF                  00296         DIS2    
-00BF   1D05           00297                 BTFSS MULT_PORT,2
-00C0   2???           00298                 GOTO DIS1
-00C1   0829           00299                 MOVF Disp2,W
-00C2   0088           00300                 MOVWF PORTD
-00C3   2???           00301                 GOTO RET ; PASO AL RETORNO DE INTERRUPCION
+00C4                  00304         DIS2    
+00C4   30FB           00305                 MOVLW B'11111011'
+00C5   0085           00306                 MOVWF MULT_PORT
+00C6   0829           00307                 MOVF Disp2,W
+00C7   0088           00308                 MOVWF PORTD
+00C8   0AAB           00309                 INCF Disp_Aux,F
+00C9   2???           00310                 GOTO RET ; PASO AL RETORNO DE INTERRUPCION
 Warning[207]: Found label after column 1. (DIS1)
-00C4                  00302         DIS1
-00C4   1C85           00303                 BTFSS MULT_PORT,1
-00C5   2???           00304                 GOTO DIS0
-00C6   0828           00305                 MOVF Disp1,W
-00C7   0088           00306                 MOVWF PORTD
-00C8   2???           00307                 GOTO RET ; PASO AL RETORNO DE INTERRUPCION
+00CA                  00311         DIS1
+00CA   30FD           00312                 MOVLW B'11111101'
+00CB   0085           00313                 MOVWF MULT_PORT
+00CC   0828           00314                 MOVF Disp1,W
+00CD   0088           00315                 MOVWF PORTD
+00CE   0AAB           00316                 INCF Disp_Aux,F
+00CF   2???           00317                 GOTO RET ; PASO AL RETORNO DE INTERRUPCION
+                      00318                 
 Warning[207]: Found label after column 1. (DIS0)
-00C9                  00308         DIS0 ; SI LLEGO HASTA AQUI ES PORQUE TODOS ESTAN EN 0, OSEA , MULT_PORT = 0001 0000
-00C9   1405           00309                 BSF PORTA,0
-00CA   0827           00310                 MOVF Disp0,W
-00CB   0088           00311                 MOVWF PORTD
-                      00312                 
-                      00313                 
+00D0                  00319         DIS0    
+00D0   30F7           00320                 MOVLW B'11110111'
+00D1   0085           00321                 MOVWF MULT_PORT
+00D2   1405           00322                 BSF PORTA,0
+00D3   0827           00323                 MOVF Disp0,W
+00D4   01AB           00324                 CLRF Disp_Aux
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00D5   0088           00325                 MOVWF PORTD
+00D6   2???           00326                 goto RET
+                      00327                 
 Warning[207]: Found label after column 1. (RET)
-00CC                  00314         RET
-                      00315                 ;RECUPERACOIN DE REGISTROS
-00CC   0E31           00316                 SWAPF S_TMP,W
-00CD   0083           00317                 MOVWF STATUS
-00CE   0EB0           00318                 SWAPF W_TMP,F
-00CF   0E30           00319                 SWAPF W_TMP,W
-00D0   0009           00320                 RETFIE
-                      00321                 
-                      00322                 
-00D1                  00323 TABLA
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  8
+00D7                  00328         RET
+                      00329                 ;RECUPERACOIN DE REGISTROS
+00D7   0E31           00330                 SWAPF S_TMP,W
+00D8   0083           00331                 MOVWF STATUS
+00D9   0EB0           00332                 SWAPF W_TMP,F
+00DA   0E30           00333                 SWAPF W_TMP,W
+00DB   0009           00334                 RETFIE
+                      00335                 
+                      00336                 
+00DC                  00337 TABLA
+00DC   0782           00338                 ADDWF PCL,F
+00DD   34C0           00339                 RETLW 0xC0 ;0
+00DE   34F9           00340                 RETLW 0xF9 ;1
+00DF   34A4           00341                 RETLW 0xA4 ;2
+00E0   34B0           00342                 RETLW 0xB0 ;3
+00E1   3499           00343                 RETLW 0x99 ;4
+00E2   3492           00344                 RETLW 0x92 ;5
+00E3   3482           00345                 RETLW 0x82 ;6
+00E4   34F8           00346                 RETLW 0xF8 ;7
+00E5   3480           00347                 RETLW 0x80 ;8
+00E6   3490           00348                 RETLW 0x90 ;9
+                      00349         
+                      00350         
+00E7                  00351 INT_RC232
+00E7   128C           00352                 BCF PIR1,RCIF
+00E8   081A           00353                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
+00E9   390F           00354                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
+00EA   2???           00355                 CALL TABLA
+00EB   00AA           00356                 MOVWF Disp3     
+                      00357                 
+00EC   1E8C           00358                 BTFSS PIR1,RCIF ; Cuando llegue el proximo digito lo recibo
+00ED   2???           00359                 GOTO $-1
+                      00360                 
+00EE   128C           00361                 BCF PIR1,RCIF
+00EF   081A           00362                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
+00F0   390F           00363                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
+00F1   2???           00364                 CALL TABLA
+00F2   00A9           00365                 MOVWF Disp2
+00F3   17A9           00366                 BSF Disp2,7 ; agrego el punto decimal
+                      00367                 
+00F4   1E8C           00368                 BTFSS PIR1,RCIF ; Cuando llegue el proximo digito lo recibo
+00F5   2???           00369                 GOTO $-1
+                      00370                 
+00F6   128C           00371                 BCF PIR1,RCIF
+00F7   081A           00372                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
+00F8   390F           00373                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
+00F9   2???           00374                 CALL TABLA
+00FA   00A8           00375                 MOVWF Disp1     
+                      00376                 
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00D1   0782           00324                 ADDWF PCL,F
-00D2   343F           00325                 RETLW 0x3F ;0
-00D3   3406           00326                 RETLW 0x06 ;1
-00D4   345B           00327                 RETLW 0x5B ;2
-00D5   344F           00328                 RETLW 0x4F ;3
-00D6   3466           00329                 RETLW 0x66 ;4
-00D7   346D           00330                 RETLW 0x6D ;5
-00D8   347D           00331                 RETLW 0x7D ;6
-00D9   3407           00332                 RETLW 0x07 ;7
-00DA   347F           00333                 RETLW 0x7F ;8
-00DB   346F           00334                 RETLW 0x6F ;9
-                      00335         
-                      00336         
-00DC                  00337 INT_RC232
-00DC   128C           00338                 BCF PIR1,RCIF
-00DD   081A           00339                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
-00DE   390F           00340                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
-00DF   2???           00341                 CALL TABLA
-00E0   00AA           00342                 MOVWF Disp3     
-                      00343                 
-00E1   1E8C           00344                 BTFSS PIR1,RCIF ; Cuando llegue el proximo digito lo recibo
-00E2   2???           00345                 GOTO $-1
-                      00346                 
-00E3   128C           00347                 BCF PIR1,RCIF
-00E4   081A           00348                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
-00E5   390F           00349                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
-00E6   2???           00350                 CALL TABLA
-00E7   00A9           00351                 MOVWF Disp2
-00E8   17A9           00352                 BSF Disp2,7 ; agrego el punto decimal
-                      00353                 
-00E9   1E8C           00354                 BTFSS PIR1,RCIF ; Cuando llegue el proximo digito lo recibo
-00EA   2???           00355                 GOTO $-1
-                      00356                 
-00EB   128C           00357                 BCF PIR1,RCIF
-00EC   081A           00358                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
-00ED   390F           00359                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
-00EE   2???           00360                 CALL TABLA
-00EF   00A8           00361                 MOVWF Disp1     
-                      00362                 
-00F0   1E8C           00363                 BTFSS PIR1,RCIF ; Cuando llegue el proximo digito lo recibo
-00F1   2???           00364                 GOTO $-1
-                      00365                 
-00F2   128C           00366                 BCF PIR1,RCIF
-00F3   081A           00367                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
-00F4   390F           00368                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
-00F5   2???           00369                 CALL TABLA
-00F6   00A7           00370                 MOVWF Disp0     
-                      00371                 
-00F7   3001           00372                 MOVLW 0X01
-00F8   00B2           00373                 MOVWF cont_flag ; seteo la bandera de tiempo
-                      00374                 
-                      00375                 
-00F9   108B           00376                 BCF INTCON,INTF;BAJO LA BANDERA Y RECUPERACOIN DE REGISTROS
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE  9
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-00FA   0E31           00377                 SWAPF S_TMP,W
-00FB   0083           00378                 MOVWF STATUS
-00FC   0EB0           00379                 SWAPF W_TMP,F
-00FD   0E30           00380                 SWAPF W_TMP,W
-00FE   0009           00381                 RETFIE
-                      00382         
-                      00383         
-                      00384         
+00FB   1E8C           00377                 BTFSS PIR1,RCIF ; Cuando llegue el proximo digito lo recibo
+00FC   2???           00378                 GOTO $-1
+                      00379                 
+00FD   128C           00380                 BCF PIR1,RCIF
+00FE   081A           00381                 MOVF RCREG,W ; RECIBO LOS VALORES DE TIEMPO
+00FF   390F           00382                 ANDLW 0X0F ; CONVERSION ASCII -> DECIMAL
+0100   2???           00383                 CALL TABLA
+0101   00A7           00384                 MOVWF Disp0     
+                      00385                 
+0102   3001           00386                 MOVLW 0X01
+0103   00B2           00387                 MOVWF cont_flag ; seteo la bandera de tiempo
+                      00388                 
+                      00389                 
+0104   108B           00390                 BCF INTCON,INTF;BAJO LA BANDERA Y RECUPERACOIN DE REGISTROS
+0105   0E31           00391                 SWAPF S_TMP,W
+0106   0083           00392                 MOVWF STATUS
+0107   0EB0           00393                 SWAPF W_TMP,F
+0108   0E30           00394                 SWAPF W_TMP,W
+0109   0009           00395                 RETFIE
+                      00396         
+                      00397         
+                      00398         
 Warning[205]: Found directive in column 1. (END)
-3FF1                  00385 END
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 10
+3FF1                  00399 END
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 10
 
 
 SYMBOL TABLE
@@ -495,7 +509,7 @@ SYMBOL TABLE
 ACKDT                             00000005
 ACKEN                             00000004
 ACKSTAT                           00000006
-ACTUALIZAR                        00000098
+ACTUALIZAR                        00000097
 ADCON0                            0000001F
 ADCON1                            0000009F
 ADCS0                             00000006
@@ -545,7 +559,7 @@ CHS0                              00000003
 CHS1                              00000004
 CHS2                              00000005
 CIS                               00000003
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 11
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 11
 
 
 SYMBOL TABLE
@@ -570,22 +584,19 @@ CVREN                             00000007
 CVROE                             00000006
 CVRR                              00000005
 D                                 00000005
-D0                                00000000
-D1                                00000001
-D2                                00000002
-D3                                00000003
 DATA_ADDRESS                      00000005
 DC                                00000001
-DIS0                              000000C9
-DIS1                              000000C4
-DIS2                              000000BF
-DIS3                              000000BA
+DIS0                              000000D0
+DIS1                              000000CA
+DIS2                              000000C4
+DIS3                              000000BE
 D_A                               00000005
 D_NOT_A                           00000005
 Disp0                             00000027
 Disp1                             00000028
 Disp2                             00000029
 Disp3                             0000002A
+Disp_Aux                          0000002B
 EEADR                             0000010D
 EEADRH                            0000010F
 EECON1                            0000018C
@@ -604,31 +615,31 @@ GO                                00000002
 GO_DONE                           00000002
 GO_NOT_DONE                       00000002
 I2C_DATA                          00000005
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 12
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 12
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-I2C_READ                          00000002
-I2C_START                         00000003
-I2C_STOP                          00000004
 IBF                               00000007
 IBOV                              00000005
-IMPR                              000000B7
+IMPR                              000000B6
 INDF                              00000000
 INICIO                            00000006
 INTCON                            0000000B
 INTE                              00000004
 INTEDG                            00000006
-INTERRUPT                         00000042
+INTERRUPT                         00000041
 INTF                              00000001
-INT_EXT                           00000052
-INT_RC232                         000000DC
-INT_TMR                           0000006E
+INT_EXT                           00000051
+INT_RC232                         000000E7
+INT_TMR                           0000006D
 IRP                               00000007
 MAIN                              00000027
-MUESTRA_CENTENA                   000000A9
+MUESTRA_CENTENA                   000000A8
 MULT_PORT                         00000005
 NOT_A                             00000005
 NOT_ADDRESS                       00000005
@@ -644,7 +655,7 @@ NOT_TO                            00000004
 NOT_TX8                           00000006
 NOT_W                             00000002
 NOT_WRITE                         00000002
-NO_MUESTRA_CENTENA                0000009B
+NO_MUESTRA_CENTENA                0000009A
 OBF                               00000006
 OERR                              00000001
 OPTION_REG                        00000081
@@ -663,15 +674,15 @@ PIE2                              0000008D
 PIR1                              0000000C
 PIR2                              0000000D
 PORTA                             00000005
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 13
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 13
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-PORTB                             00000006
-PORTC                             00000007
-PORTD                             00000008
 PORTE                             00000009
 PR2                               00000092
 PS0                               00000000
@@ -722,18 +733,18 @@ RD3                               00000003
 RD4                               00000004
 RD5                               00000005
 RD6                               00000006
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 14
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 14
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-RD7                               00000007
-RE0                               00000000
-RE1                               00000001
 RE2                               00000002
 READ_WRITE                        00000002
-RET                               000000CC
+RET                               000000D7
 RP0                               00000005
 RP1                               00000006
 RSEN                              00000001
@@ -743,7 +754,7 @@ R_NOT_W                           00000002
 R_W                               00000002
 S                                 00000003
 SEN                               00000000
-SIG                               00000093
+SIG                               00000092
 SMP                               00000007
 SPBRG                             00000099
 SPEN                              00000007
@@ -777,19 +788,19 @@ T1SYNC                            00000002
 T2CKPS0                           00000000
 T2CKPS1                           00000001
 T2CON                             00000012
-TABLA                             000000D1
+TABLA                             000000DC
 TMR0                              00000001
 TMR0IE                            00000005
 TMR0IF                            00000002
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 15
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 15
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-TMR1                              0000000E
-TMR1CS                            00000001
-TMR1H                             0000000F
 TMR1IE                            00000000
 TMR1IF                            00000000
 TMR1L                             0000000E
@@ -840,15 +851,15 @@ TRISE                             00000089
 TRISE0                            00000000
 TRISE1                            00000001
 TRISE2                            00000002
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 16
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 16
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-TRMT                              00000001
-TX8_9                             00000006
-TX9                               00000006
 TX9D                              00000000
 TXD8                              00000000
 TXEN                              00000005
@@ -870,15 +881,14 @@ WREN                              00000002
 WRERR                             00000003
 W_TMP                             00000030
 Z                                 00000002
-_.org_2_003D                      0000003D
-_.org_2_0041                      00000041
-_.org_2_0056                      00000056
-_.org_2_005B                      0000005B
-_.org_2_0060                      00000060
-_.org_2_0065                      00000065
-_.org_2_00E2                      000000E2
-_.org_2_00EA                      000000EA
-_.org_2_00F1                      000000F1
+_.org_2_0040                      00000040
+_.org_2_0055                      00000055
+_.org_2_005A                      0000005A
+_.org_2_005F                      0000005F
+_.org_2_0064                      00000064
+_.org_2_00ED                      000000ED
+_.org_2_00F5                      000000F5
+_.org_2_00FC                      000000FC
 _BODEN_OFF                        00003FBF
 _BODEN_ON                         00003FFF
 _BOREN_OFF                        00003FBF
@@ -899,16 +909,16 @@ _FOSC_XT                          00003FFD
 _HS_OSC                           00003FFE
 _IDLOC0                           00002000
 _IDLOC1                           00002001
-MPASM 5.73                          PROG.ASM   5-15-2017  19:22:12         PAGE 17
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+MPASM 5.73                          PROG.ASM   5-23-2017  23:37:01         PAGE 17
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-_IDLOC2                           00002002
-_IDLOC3                           00002003
-_LP_OSC                           00003FFC
-_LVP_OFF                          00003F7F
 _LVP_ON                           00003FFF
 _PWRTE_OFF                        00003FFF
 _PWRTE_ON                         00003FF7

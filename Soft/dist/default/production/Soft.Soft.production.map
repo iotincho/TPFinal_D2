@@ -1,5 +1,5 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Mon May 15 19:22:13 2017
+Linker Map File - Created Tue May 23 23:37:03 2017
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -7,7 +7,7 @@ Linker Map File - Created Mon May 15 19:22:13 2017
                    .org_0       code   0x000000    program   0x000002
                    .cinit    romdata   0x000001    program   0x000004
                    .org_1       code   0x000004    program   0x000002
-                   .org_2       code   0x000006    program   0x0001f2
+                   .org_2       code   0x000006    program   0x000208
 .config_2007_BUILD/DEFAULT/PRODUCTION/PROG.O       code   0x002007    program   0x000002
 
 
@@ -17,41 +17,40 @@ Linker Map File - Created Mon May 15 19:22:13 2017
                            ---------   ---------      
                             0x000000    0x000002      
                             0x000004    0x000004      
-                            0x000006    0x0000fe      
+                            0x000006    0x000109      
                             0x002007    0x002007      
-            254 out of 8454 program addresses used, program memory utilization is 3%
+            265 out of 8454 program addresses used, program memory utilization is 3%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-               ACTUALIZAR   0x000098    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS0   0x0000c9    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS1   0x0000c4    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS2   0x0000bf    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS3   0x0000ba    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     IMPR   0x0000b7    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+               ACTUALIZAR   0x000097    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS0   0x0000d0    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS1   0x0000ca    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS2   0x0000c4    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS3   0x0000be    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     IMPR   0x0000b6    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
                    INICIO   0x000006    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                INTERRUPT   0x000042    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                  INT_EXT   0x000052    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                INT_RC232   0x0000dc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                  INT_TMR   0x00006e    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                INTERRUPT   0x000041    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                  INT_EXT   0x000051    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                INT_RC232   0x0000e7    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                  INT_TMR   0x00006d    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
                      MAIN   0x000027    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-          MUESTRA_CENTENA   0x0000a9    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-       NO_MUESTRA_CENTENA   0x00009b    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                      RET   0x0000cc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                      SIG   0x000093    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                    TABLA   0x0000d1    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_003D   0x00003d    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0041   0x000041    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0056   0x000056    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_005B   0x00005b    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0060   0x000060    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0065   0x000065    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_00E2   0x0000e2    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_00EA   0x0000ea    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_00F1   0x0000f1    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+          MUESTRA_CENTENA   0x0000a8    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+       NO_MUESTRA_CENTENA   0x00009a    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                      RET   0x0000d7    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                      SIG   0x000092    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                    TABLA   0x0000dc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_0040   0x000040    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_0055   0x000055    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_005A   0x00005a    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_005F   0x00005f    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_0064   0x000064    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_00ED   0x0000ed    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_00F5   0x0000f5    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_00FC   0x0000fc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
 
 
 
@@ -60,29 +59,28 @@ Linker Map File - Created Mon May 15 19:22:13 2017
                 ---------  ---------  ---------  --------- ---------                
                    INICIO   0x000006    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
                      MAIN   0x000027    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_003D   0x00003d    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0041   0x000041    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                INTERRUPT   0x000042    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                  INT_EXT   0x000052    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0056   0x000056    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_005B   0x00005b    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0060   0x000060    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_0065   0x000065    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                  INT_TMR   0x00006e    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                      SIG   0x000093    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-               ACTUALIZAR   0x000098    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-       NO_MUESTRA_CENTENA   0x00009b    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-          MUESTRA_CENTENA   0x0000a9    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     IMPR   0x0000b7    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS3   0x0000ba    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS2   0x0000bf    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS1   0x0000c4    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                     DIS0   0x0000c9    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                      RET   0x0000cc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                    TABLA   0x0000d1    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-                INT_RC232   0x0000dc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_00E2   0x0000e2    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_00EA   0x0000ea    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
-             _.org_2_00F1   0x0000f1    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_0040   0x000040    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                INTERRUPT   0x000041    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                  INT_EXT   0x000051    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_0055   0x000055    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_005A   0x00005a    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_005F   0x00005f    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_0064   0x000064    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                  INT_TMR   0x00006d    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                      SIG   0x000092    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+               ACTUALIZAR   0x000097    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+       NO_MUESTRA_CENTENA   0x00009a    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+          MUESTRA_CENTENA   0x0000a8    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     IMPR   0x0000b6    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS3   0x0000be    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS2   0x0000c4    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS1   0x0000ca    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                     DIS0   0x0000d0    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                      RET   0x0000d7    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                    TABLA   0x0000dc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+                INT_RC232   0x0000e7    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_00ED   0x0000ed    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_00F5   0x0000f5    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
+             _.org_2_00FC   0x0000fc    program     static C:\Users\Tincho\Google Drive\Digital 2\proy\Soft\Prog.asm
 
 
